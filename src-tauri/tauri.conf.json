@@ -12,9 +12,13 @@
   "app": {
     "windows": [
       {
-        "title": "dev-task",
-        "width": 800,
-        "height": 600
+        "title": "DevTask",
+        "height": 600,
+        "width": 1200,
+        "decorations": false,
+        "fullscreen": false,
+        "center": true,
+        "resizable": true
       }
     ],
     "security": {
