@@ -13,7 +13,7 @@ function App() {
   }
 
   return (
-    <main className="container text-slate-500">
+    <>
       <h1>Welcome to Tauri + React</h1>
 
       <div className="row">
@@ -40,7 +40,7 @@ function App() {
         <button type="submit">Greet</button>
       </form>
       <p>{greetMsg}</p>
-    </main>
+    </>
   );
 }
 

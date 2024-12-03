@@ -12,13 +12,13 @@ export default function ThemeToggle() {
       <MenubarTrigger>Theme</MenubarTrigger>
       <MenubarContent forceMount>
         <MenubarRadioGroup value={theme}>
-          <MenubarRadioItem value="light" onClick={() => setTheme('light')}>
+          <MenubarRadioItem className="text-xs" value="light" onClick={() => setTheme('light')}>
             <span>Light</span>
           </MenubarRadioItem>
-          <MenubarRadioItem value="dark" onClick={() => setTheme('dark')}>
+          <MenubarRadioItem className="text-xs" value="dark" onClick={() => setTheme('dark')}>
             <span>Dark</span>
           </MenubarRadioItem>
-          <MenubarRadioItem value="system" onClick={() => setTheme('system')}>
+          <MenubarRadioItem className="text-xs" value="system" onClick={() => setTheme('system')}>
             <span>System</span>
           </MenubarRadioItem>
         </MenubarRadioGroup>

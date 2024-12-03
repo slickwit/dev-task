@@ -27,8 +27,8 @@ export default function Menu() {
   }, []);
 
   return (
-    <header className="fixed z-50 flex h-[38px] w-full items-center justify-between border-b bg-background titlebar" data-tauri-drag-region>
-      <Menubar className="rounded-none border-none p-0 pl-0.5">
+    <header className="fixed z-50 h-10 flex w-full items-center justify-between border-b bg-background titlebar px-0.5" data-tauri-drag-region>
+      <Menubar className="rounded-none h-auto border-0 p-0">
         <MenubarMenu>
           <MenubarTrigger className="font-bold text-cyan-500">
             <Code className="mr-1 h-3.5 w-4" />
@@ -37,30 +37,26 @@ export default function Menu() {
           {/* <Dialog modal={false}> */}
           <MenubarContent>
             {/* <DialogTrigger asChild> */}
-            <MenubarItem>About App</MenubarItem>
+            <MenubarItem className="text-xs">About App</MenubarItem>
             {/* </DialogTrigger> */}
 
             <MenubarSeparator />
-            <MenubarItem>
+            <MenubarItem className="text-xs">
               Preferences...
-              {' '}
               <MenubarShortcut>⌘,</MenubarShortcut>
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>
+            <MenubarItem className="text-xs">
               Hide Music...
-              {' '}
               <MenubarShortcut>⌘H</MenubarShortcut>
             </MenubarItem>
-            <MenubarItem>
+            <MenubarItem className="text-xs">
               Hide Others...
-              {' '}
               <MenubarShortcut>⇧⌘H</MenubarShortcut>
             </MenubarItem>
             <MenubarShortcut />
-            <MenubarItem onClick={closeWindow}>
+            <MenubarItem className="text-xs" onClick={closeWindow}>
               Quit
-              {' '}
               <MenubarShortcut>⌘Q</MenubarShortcut>
             </MenubarItem>
           </MenubarContent>
@@ -119,52 +115,52 @@ export default function Menu() {
         <MenubarMenu>
           <MenubarTrigger>Edit</MenubarTrigger>
           <MenubarContent>
-            <MenubarItem disabled>
+            <MenubarItem className="text-xs" disabled>
               Undo
               {' '}
               <MenubarShortcut>⌘Z</MenubarShortcut>
             </MenubarItem>
-            <MenubarItem disabled>
+            <MenubarItem className="text-xs" disabled>
               Redo
               {' '}
               <MenubarShortcut>⇧⌘Z</MenubarShortcut>
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem disabled>
+            <MenubarItem className="text-xs" disabled>
               Cut
               {' '}
               <MenubarShortcut>⌘X</MenubarShortcut>
             </MenubarItem>
-            <MenubarItem disabled>
+            <MenubarItem className="text-xs" disabled>
               Copy
               {' '}
               <MenubarShortcut>⌘C</MenubarShortcut>
             </MenubarItem>
-            <MenubarItem disabled>
+            <MenubarItem className="text-xs" disabled>
               Paste
               {' '}
               <MenubarShortcut>⌘V</MenubarShortcut>
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>
+            <MenubarItem className="text-xs">
               Select All
               {' '}
               <MenubarShortcut>⌘A</MenubarShortcut>
             </MenubarItem>
-            <MenubarItem disabled>
+            <MenubarItem className="text-xs" disabled>
               Deselect All
               {' '}
               <MenubarShortcut>⇧⌘A</MenubarShortcut>
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>
+            <MenubarItem className="text-xs">
               Smart Dictation...
               {' '}
               <MenubarShortcut>
                 <Mic className="h-4 w-4" />
               </MenubarShortcut>
             </MenubarItem>
-            <MenubarItem>
+            <MenubarItem className="text-xs">
               Emoji & Symbols
               {' '}
               <MenubarShortcut>
@@ -176,15 +172,15 @@ export default function Menu() {
         <MenubarMenu>
           <MenubarTrigger>View</MenubarTrigger>
           <MenubarContent>
-            <MenubarCheckboxItem>Show Playing Next</MenubarCheckboxItem>
-            <MenubarCheckboxItem checked>Show Lyrics</MenubarCheckboxItem>
+            <MenubarCheckboxItem className="text-xs">Show Playing Next</MenubarCheckboxItem>
+            <MenubarCheckboxItem className="text-xs" checked>Show Lyrics</MenubarCheckboxItem>
             <MenubarSeparator />
-            <MenubarItem inset disabled>
+            <MenubarItem className="text-xs" inset disabled>
               Show Status Bar
             </MenubarItem>
             <MenubarSeparator />
-            <MenubarItem inset>Hide Sidebar</MenubarItem>
-            <MenubarItem disabled inset>
+            <MenubarItem className="text-xs" inset>Hide Sidebar</MenubarItem>
+            <MenubarItem className="text-xs" disabled inset>
               Enter Full Screen
             </MenubarItem>
           </MenubarContent>
@@ -192,17 +188,17 @@ export default function Menu() {
         <MenubarMenu>
           <MenubarTrigger>Account</MenubarTrigger>
           <MenubarContent forceMount>
-            <MenubarLabel inset>Switch Account</MenubarLabel>
+            <MenubarLabel inset className="text-xs">Switch Account</MenubarLabel>
             <MenubarSeparator />
             <MenubarRadioGroup value="benoit">
-              <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
-              <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
-              <MenubarRadioItem value="Luis">Luis</MenubarRadioItem>
+              <MenubarRadioItem className="text-xs" value="andy">Andy</MenubarRadioItem>
+              <MenubarRadioItem className="text-xs" value="benoit">Benoit</MenubarRadioItem>
+              <MenubarRadioItem className="text-xs" value="Luis">Luis</MenubarRadioItem>
             </MenubarRadioGroup>
             <MenubarSeparator />
-            <MenubarItem inset>Manage Famliy...</MenubarItem>
+            <MenubarItem className="text-xs" inset>Manage Famliy...</MenubarItem>
             <MenubarSeparator />
-            <MenubarItem inset>Add Account...</MenubarItem>
+            <MenubarItem className="text-xs" inset>Add Account...</MenubarItem>
           </MenubarContent>
         </MenubarMenu>
 
