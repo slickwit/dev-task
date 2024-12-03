@@ -7,12 +7,15 @@ import {
 
 export default function AppSidebar() {
   return (
-    <Sidebar className="pt-10">
-      <SidebarContent>
-        <SidebarGroup />
-        <SidebarGroup />
-      </SidebarContent>
-      <SidebarFooter />
-    </Sidebar>
+    <>
+      <Sidebar>
+        <div className="h-10" />
+        <SidebarContent>
+          <SidebarGroup />
+          <SidebarGroup />
+        </SidebarContent>
+        <SidebarFooter />
+      </Sidebar>
+    </>
   );
 }

@@ -11,11 +11,11 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   return (
     <SidebarProvider>
-      <div className="min-h-svh">
+      <div className="min-h-svh w-full">
         <Menu />
-        <div className="flex pt-10">
+        <div className="flex w-full">
           <AppSidebar />
-          <main className="w-full px-4 py-2">
+          <main className="w-full px-4">
             <SidebarTrigger />
             {children}
           </main>
