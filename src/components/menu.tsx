@@ -40,7 +40,7 @@ export default function Menu() {
   return (
     <>
       <header
-        className="fixed z-50 h-10 flex w-full items-center justify-between border-b bg-background titlebar px-0.5"
+        className="fixed z-50 h-9 flex w-full items-center justify-between border-b bg-background titlebar px-0.5"
         data-tauri-drag-region
         onMouseDown={async (e) => {
           if (e.buttons === 1 && e.detail === 2) {
@@ -49,9 +49,9 @@ export default function Menu() {
           }
         }}
       >
-        <Menubar className="rounded-none h-auto border-0 p-0">
+        <Menubar className="rounded-none border-0 p-0 shadow-none bg-transparent [&>button]:h-9 gap-0">
           <MenubarMenu>
-            <MenubarTrigger className="font-bold text-cyan-500">
+            <MenubarTrigger className="font-bold text-cyan-500 rounded-none h-9">
               <Code className="mr-1 h-3.5 w-4" />
               <h4 className="text-xs font-bold">DevTask~</h4>
             </MenubarTrigger>
@@ -85,7 +85,7 @@ export default function Menu() {
             {/* </Dialog> */}
           </MenubarMenu>
           <MenubarMenu>
-            <MenubarTrigger className="relative">File</MenubarTrigger>
+            <MenubarTrigger className="relative rounded-none">File</MenubarTrigger>
             {/* <Dialog open={openNewFolder} onOpenChange={setOpenNewFolder}>
             <MenubarContent>
               <DialogTrigger className="w-full">
@@ -134,7 +134,7 @@ export default function Menu() {
           </Dialog> */}
           </MenubarMenu>
           <MenubarMenu>
-            <MenubarTrigger>Edit</MenubarTrigger>
+            <MenubarTrigger className="rounded-none">Edit</MenubarTrigger>
             <MenubarContent>
               <MenubarItem className="text-xs" disabled>
                 Undo
@@ -191,7 +191,7 @@ export default function Menu() {
             </MenubarContent>
           </MenubarMenu>
           <MenubarMenu>
-            <MenubarTrigger>View</MenubarTrigger>
+            <MenubarTrigger className="rounded-none">View</MenubarTrigger>
             <MenubarContent>
               <MenubarCheckboxItem className="text-xs">Show Playing Next</MenubarCheckboxItem>
               <MenubarCheckboxItem className="text-xs" checked>Show Lyrics</MenubarCheckboxItem>
@@ -207,7 +207,7 @@ export default function Menu() {
             </MenubarContent>
           </MenubarMenu>
           <MenubarMenu>
-            <MenubarTrigger>Account</MenubarTrigger>
+            <MenubarTrigger className="rounded-none">Account</MenubarTrigger>
             <MenubarContent forceMount>
               <MenubarLabel inset className="text-xs">Switch Account</MenubarLabel>
               <MenubarSeparator />
@@ -227,7 +227,7 @@ export default function Menu() {
         </Menubar>
         <WindowsControls isMaximized={isMaximized} setIsMaximized={setIsMaximized} />
       </header>
-      <div className="h-10" />
+      <div className="h-9" />
     </>
   );
 }

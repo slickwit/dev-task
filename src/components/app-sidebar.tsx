@@ -9,7 +9,7 @@ export default function AppSidebar() {
   return (
     <>
       <Sidebar>
-        <div className="h-10" />
+        <div className="h-9" />
         <SidebarContent>
           <SidebarGroup />
           <SidebarGroup />

@@ -110,6 +110,7 @@
     ::-webkit-scrollbar-corner {
       color: hsl(var(--primary));
       background: hsl(var(--accent) / 0.08);
+      background-color: hsl(var(--foreground) / 0.04);
       width: 12px;
       height: 12px;
     }

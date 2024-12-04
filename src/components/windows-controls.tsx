@@ -29,10 +29,10 @@ export default function WindowsControls({ isMaximized, setIsMaximized }: { isMax
   };
 
   const MenuBarWrapped = (
-    <div className="flex items-center">
+    <div className="flex items-center h-7">
       <div className="space-x-2">
         {/* Minimize Icon */}
-        <Button onClick={handleMinimizeClick} variant="ghost" className="size-6 rounded-none p-0">
+        <Button onClick={handleMinimizeClick} variant="ghost" className="size-7 rounded-none p-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 14 14"
@@ -49,7 +49,7 @@ export default function WindowsControls({ isMaximized, setIsMaximized }: { isMax
         </Button>
 
         {/* Maximize Icon */}
-        <Button onClick={handleToggleMaximize} variant="ghost" className="size-6 rounded-none p-0 stroke-foreground">
+        <Button onClick={handleToggleMaximize} variant="ghost" className="size-7 rounded-none p-0 stroke-foreground">
           {isMaximized
             ? (
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="xMidYMid meet" className="fill-foreground p-0.5">
@@ -82,7 +82,7 @@ export default function WindowsControls({ isMaximized, setIsMaximized }: { isMax
         </Button>
 
         {/* Close Icon */}
-        <Button variant="ghost" className="size-6 rounded-none p-0" onClick={handleCloseClick}>
+        <Button variant="ghost" className="size-7 rounded-none p-0" onClick={handleCloseClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"

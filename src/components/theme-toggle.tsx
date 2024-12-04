@@ -9,7 +9,7 @@ export default function ThemeToggle() {
 
   return (
     <MenubarMenu>
-      <MenubarTrigger>Theme</MenubarTrigger>
+      <MenubarTrigger className="rounded-none">Theme</MenubarTrigger>
       <MenubarContent forceMount>
         <MenubarRadioGroup value={theme}>
           <MenubarRadioItem className="text-xs" value="light" onClick={() => setTheme('light')}>

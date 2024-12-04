@@ -1,6 +1,6 @@
 import AppSidebar from '@/components/app-sidebar';
 import Menu from '@/components/menu';
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { SidebarProvider } from '@/components/ui/sidebar';
 
 // ----------------------------------------------------------------------
 
@@ -15,8 +15,7 @@ export default function Layout({ children }: LayoutProps) {
         <Menu />
         <div className="flex w-full">
           <AppSidebar />
-          <main className="w-full px-4">
-            <SidebarTrigger />
+          <main className="w-full">
             {children}
           </main>
         </div>
