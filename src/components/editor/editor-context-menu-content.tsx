@@ -1,10 +1,15 @@
-import type { Editor } from '@tiptap/core';
+import { useCurrentEditor } from '@tiptap/react';
 
 import { ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuShortcut } from '@/components/ui/context-menu';
 
 // ----------------------------------------------------------------------
 
-export default function EditorContextMenuContent({ editor }: { editor: Editor }) {
+export default function EditorContextMenuContent() {
+  const { editor } = useCurrentEditor();
+
+  if (!editor)
+    return null;
+
   return (
     <ContextMenuContent className="w-64">
       <ContextMenuItem inset disabled>
