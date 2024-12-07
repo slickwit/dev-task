@@ -1,5 +1,5 @@
 import { EditorProvider, useCurrentEditor } from '@tiptap/react';
-import { Bold, Code, CodeSquare, Italic, List, ListOrdered, Quote, Redo, SeparatorHorizontal, Strikethrough, Undo } from 'lucide-react';
+import { Bold, Code, CodeSquare, Italic, List, ListCheck, ListOrdered, Quote, Redo, SeparatorHorizontal, Strikethrough, Undo } from 'lucide-react';
 
 import './tiptap.css';
 
@@ -173,6 +173,15 @@ function EditorHeader({ open }: { open: boolean }) {
           title="Ordered List"
         >
           <ListOrdered />
+        </Button>
+        <Button
+          onClick={() => editor.chain().focus().insertContent(`<ul data-type="taskList"><li data-type="taskItem" data-checked="true"></li></ul>`).run()}
+          className={cn('size-7 flex-shrink-0 rounded-none')}
+          variant="ghost"
+          size="icon"
+          title="Todo List"
+        >
+          <ListCheck />
         </Button>
         <Button
           onClick={() => editor.chain().focus().toggleBlockquote().run()}

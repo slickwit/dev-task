@@ -25,9 +25,14 @@ export default function EditorContextMenuContent() {
         Close
         <ContextMenuShortcut>⌘W</ContextMenuShortcut>
       </ContextMenuItem>
+      <ContextMenuSeparator />
       <ContextMenuItem inset onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
         Code Block
         <ContextMenuShortcut>⌘ Alt C</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem inset onClick={() => editor.chain().focus().insertContent(`<ul data-type="taskList"><li data-type="taskItem" data-checked="true"></li></ul>`).run()}>
+        Todo List
+        <ContextMenuShortcut>⌘ Alt T</ContextMenuShortcut>
       </ContextMenuItem>
       <ContextMenuSeparator />
       <ContextMenuItem

@@ -1,7 +1,28 @@
-# Tauri + React + Typescript
+# DevTask~
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+**DevTask~** is a desktop application built with the Tauri framework, leveraging React, Shadcn, and Rust. It was created to help developers keep track of their notes and code snippets efficiently.
 
-## Recommended IDE Setup
+If you're tired of losing your important notes or code examples, **DevTask~** offers a simple, persistent solution. Unlike traditional note-taking apps, DevTask~ saves your content automatically and keeps it cached, so when you open the app again, your previous work is still there, ready for you to continue.
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+With **DevTask~**, you get:
+
+- Seamless note-taking for your code snippets, ideas, and todos.
+- Auto-saving feature, so you don't have to worry about losing content.
+- A clean interface with powerful features to format and store your code.
+- Built using modern technologies like Tauri, React, Shadcn, and Rust for a smooth and responsive experience.
+
+### Pending Fixes & Features:
+
+- [ ] **Markdown Parser:** Add markdown parsing when pasting text with markdown formatting.
+- [ ] **Menu:** Finish the app's main menu.
+- [ ] **Context Menu & Shortcuts:** Complete the context menu and implement all shortcut keys.
+
+### Future Features:
+
+- [ ] **Separate Todo List:** Move the todo list from the editor and add it to a separate, smaller window.
+- [ ] **Export/Import:** Add functionality to export and import files.
+- [ ] **Multiple Themes:** Implement support for multiple themes.
+
+**DevTask~** is perfect for developers who need a simple, yet powerful, solution for capturing, organizing, and retrieving notes and code without the worry of losing them.
+
+Try **DevTask~** today and keep your coding notes safe and always within reach!

@@ -1,14 +1,21 @@
 .tiptap {
   counter-reset: ol;
-
-  ul > li::marker {
-    content: '•';
+  ul {
+    &>li {
+      padding-left: 0.5rem;
+    }
+    &:not([data-type="taskList"]) > li {
+      &::marker {
+          content: '•';
+      }
+    }
   }
-
-  ul > li {
-    padding-left: 0.5rem;
+  [data-type="taskList"] > li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
   }
-
   ol {
     padding-left: 0.5rem;
     li {
