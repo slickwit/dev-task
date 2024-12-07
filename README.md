@@ -27,7 +27,7 @@ With **DevTask~**, you get:
 
 Try **DevTask~** today and keep your coding notes safe and always within reach!
 
-## [Download For Windows](./releases/download/v0.1.0)
+## [Download For Windows](./releases/download/v0.5.0)
 
 ### Run locally
 
