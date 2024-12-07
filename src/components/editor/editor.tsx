@@ -1,5 +1,5 @@
 import { EditorProvider, useCurrentEditor } from '@tiptap/react';
-import { Bold, ChevronDown, ChevronUp, Code, CodeSquare, Italic, List, ListOrdered, Quote, Redo, SeparatorHorizontal, Strikethrough, Undo } from 'lucide-react';
+import { Bold, Code, CodeSquare, Italic, List, ListOrdered, Quote, Redo, SeparatorHorizontal, Strikethrough, Undo } from 'lucide-react';
 
 import './tiptap.css';
 
@@ -23,12 +23,12 @@ import EditorMenuBar from './menu-bar';
 
 export default function Editor() {
   const activeTab = useFileStore(state => state.activeTab);
-  const setTab = useFileStore(state => state.setTab);
+  const setTabById = useFileStore(state => state.setTabById);
 
   return (
     <div className="h-full relative">
       <div className="h-full flex flex-col">
-        <Tabs value={activeTab?.id ?? ''} className="h-full" onValueChange={setTab}>
+        <Tabs value={activeTab?.id ?? ''} className="h-full" onValueChange={setTabById}>
           <TabsList className="p-0 bg-transparent rounded-none w-full h-7">
             <EditorMenuBar />
           </TabsList>
@@ -66,6 +66,8 @@ function EditorList() {
               onUpdate={(props) => {
                 editorUpdate(props, file.id);
               }}
+              enablePasteRules
+              enableInputRules
             >
               <EditorContextMenuContent />
             </EditorProvider>

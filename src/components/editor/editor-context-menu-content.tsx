@@ -12,15 +12,20 @@ export default function EditorContextMenuContent() {
 
   return (
     <ContextMenuContent className="w-64">
-      <ContextMenuItem inset disabled>
+      <ContextMenuItem
+        inset
+        onClick={() => {
+          location?.reload();
+        }}
+      >
         Reload
         <ContextMenuShortcut>⌘R</ContextMenuShortcut>
       </ContextMenuItem>
-      <ContextMenuItem inset disabled>
+      <ContextMenuItem inset onClick={() => editor.chain().focus().toggleOrderedList().run()}>
         Close
         <ContextMenuShortcut>⌘W</ContextMenuShortcut>
       </ContextMenuItem>
-      <ContextMenuItem inset disabled>
+      <ContextMenuItem inset onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
         Code Block
         <ContextMenuShortcut>⌘ Alt C</ContextMenuShortcut>
       </ContextMenuItem>

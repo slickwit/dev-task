@@ -8,7 +8,7 @@ import { create } from 'zustand';
 import { debounceAsync } from '@/lib/debounce';
 
 // ----------------------------------------------------------------------
-const tauriFileStore = new LazyStore('.files.dat', { autoSave: true });
+const tauriFileStore = new LazyStore('.files.dat', { autoSave: 600 });
 
 const debounceSaveCache = debounceAsync(saveCache);
 
@@ -34,11 +34,14 @@ interface IFileStoreState extends z.infer<typeof fileStoreSchema> {
 }
 
 interface IFileStoreActions {
-  addFile: (fileName?: string) => boolean;
-  setTab: (id: string) => void;
+  setTabById: (id: string) => void;
+  setTab: (index: number) => void;
   closeTab: (id?: string) => void;
   editorUpdate: (editorUpdate: EditorEvents['update'], id: string) => void;
+  addFile: (fileName?: string) => boolean;
+  updateFileName: (fileName: string, id: string) => Promise<boolean>;
   saveFile: (id?: string) => void;
+  deleteFile: (id?: string) => void;
 }
 
 const defaultState: IFileStoreState = {
@@ -50,38 +53,46 @@ const defaultState: IFileStoreState = {
 
 export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, get) => ({
   ...defaultState,
-  addFile: (fileName) => {
-    if (fileName) {
-      const exist = get().files.some(f => f.fileName === fileName);
-      if (exist)
-        return false;
+  setTabById: async (id: string) => {
+    const { openedTab, files } = get();
+    const inOpenTab = openedTab.find(f => f.id === id);
+    if (inOpenTab) {
+      set({
+        activeTab: inOpenTab,
+      });
+      await tauriFileStore.set('activeTab', inOpenTab);
     }
-    const newFileName = fileName ?? null;
-    const newFile: TFile = {
-      id: uuid(),
-      fileName: newFileName,
-      content: '',
-      saved: false,
-      createdAt: (new Date()).getTime(),
-      updatedAt: null,
-    };
-    set(state => ({
-      activeTab: newFile,
-      files: [...state.files, newFile],
-      openedTab: [...state.openedTab, newFile],
-    }));
-    return true;
+    else {
+      const file = files.find(f => f.id === id);
+      if (file) {
+        set({
+          activeTab: file,
+          openedTab: [...openedTab, file],
+        });
+        await tauriFileStore.set('activeTab', file);
+      }
+    }
   },
-  setTab: (id: string) => {
-    set({
-      activeTab: get().openedTab.find(f => f.id === id),
-    });
+  setTab: async (index: number) => {
+    const { openedTab } = get();
+    const selectedTab = openedTab[index];
+    if (selectedTab) {
+      set({
+        activeTab: selectedTab,
+      });
+    }
   },
   closeTab: async (id?: string) => {
-    const { openedTab, activeTab } = get();
+    const { openedTab, activeTab, files } = get();
     const selectedTabId = id ?? activeTab?.id;
     const closedIndex = openedTab.findIndex(file => file.id === selectedTabId);
+    const selectedTab = openedTab[closedIndex];
     const filteredTab = openedTab.filter(f => f.id !== selectedTabId);
+    if (!selectedTab.fileName && selectedTab.content === '' && selectedTab.saved) {
+      const updatedFiles = files.filter(f => f.id !== selectedTab.id);
+      set({ files: updatedFiles });
+      await tauriFileStore.set('files', updatedFiles);
+    }
     const newActiveTab = id && id !== activeTab?.id ? activeTab : filteredTab[closedIndex] ?? filteredTab[closedIndex - 1] ?? null;
     if (closedIndex !== -1) {
       set({
@@ -113,37 +124,81 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
     });
     debounceSaveCache({ openedTab: newOpenedTab });
   },
+  addFile: (fileName) => {
+    if (fileName) {
+      const exist = get().files.some(f => f.fileName === fileName);
+      if (exist)
+        return false;
+    }
+    const newFileName = fileName ?? null;
+    const newFile: TFile = {
+      id: uuid(),
+      fileName: newFileName,
+      content: '',
+      saved: true,
+      createdAt: (new Date()).getTime(),
+      updatedAt: null,
+    };
+    set(state => ({
+      activeTab: newFile,
+      files: [...state.files, newFile],
+      openedTab: [...state.openedTab, newFile],
+    }));
+    return true;
+  },
+  updateFileName: async (fileName, id) => {
+    if (fileName && id) {
+      const { files, activeTab, openedTab } = get();
+      const exist = files.some(f => f.fileName === fileName);
+      if (exist)
+        return false;
+      const updatedFiles = files.map(f => f.id === id ? { ...f, fileName, updatedAt: new Date().getTime() } : f);
+      const updatedOpenedTab = openedTab.map(f => f.id === id ? { ...f, fileName, updatedAt: new Date().getTime() } : f);
+      const updatedActiveTab = activeTab?.id === id ? { ...activeTab, fileName, updatedAt: new Date().getTime() } : activeTab;
+      set({
+        files: updatedFiles,
+        openedTab: updatedOpenedTab,
+        activeTab: updatedActiveTab,
+      });
+      await saveFileStorage({ files: updatedFiles, openedTab: updatedOpenedTab, activeTab: updatedActiveTab });
+      return true;
+    }
+    return false;
+  },
   saveFile: async (id?: string) => {
     if (id) {
       const { files, openedTab, activeTab } = get();
-      const newState: Omit<IFileStoreState, '_hasHydrated'> = {
+      const newFiles = files.filter(f => f.id !== id);
+      const newOpenedTab = openedTab.map((f) => {
+        if (f.id === id) {
+          const u = {
+            ...f,
+            saved: true,
+          };
+          newFiles.push(u);
+          return u;
+        }
+        return f;
+      });
+      const newState: z.infer<typeof fileStoreSchema> = {
         activeTab: activeTab?.id === id ? { ...activeTab, saved: true } : null,
-        files: files.map((f) => {
-          if (f.id === id) {
-            return {
-              ...f,
-              saved: true,
-            };
-          }
-          return f;
-        }),
-        openedTab: openedTab.map((f) => {
-          if (f.id === id) {
-            return {
-              ...f,
-              saved: true,
-            };
-          }
-          return f;
-        }),
+        files: newFiles,
+        openedTab: newOpenedTab,
       };
-      set({ ...newState });
-      await Promise.all([
-        tauriFileStore.set('files', newState.files),
-        tauriFileStore.set('openedTab', newState.openedTab),
-        tauriFileStore.set('activeTab', newState.activeTab),
-      ]);
+      set(newState);
+      await saveFileStorage(newState);
     }
+  },
+  deleteFile: async (id?: string) => {
+    const { files, openedTab, activeTab } = get();
+    const selId = id ?? activeTab?.id;
+    const updatedState: z.infer<typeof fileStoreSchema> = {
+      files: files.filter(f => f.id !== selId),
+      openedTab: openedTab.filter(f => f.id !== selId),
+      activeTab: id === activeTab?.id ? null : activeTab,
+    };
+    set(updatedState);
+    await saveFileStorage(updatedState);
   },
 }));
 
@@ -156,11 +211,26 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
   ]);
 
   if (unParsedFiles) {
-    const parsedData = fileStoreSchema.parse({
-      activeTab: unParsedActiveTab ?? null,
+    const parsedFiles = fileStoreSchema.pick({ files: true }).parse({
       files: unParsedFiles,
+      activeTab: unParsedActiveTab ?? null,
       openedTab: unParsedOpenedTab ?? [],
     });
+    const parsedActiveTab = unParsedActiveTab === null ? null : fileSchema.parse(unParsedActiveTab);
+    const parsedOpenedTab = fileStoreSchema.pick({ openedTab: true }).parse({ openedTab: unParsedOpenedTab ?? [] });
+    const inOpenedTab = parsedOpenedTab.openedTab.some(f => f.id === parsedActiveTab?.id);
+    if (!inOpenedTab) {
+      const file = parsedFiles.files.find(f => f.id === parsedActiveTab?.id);
+      if (file) {
+        parsedOpenedTab.openedTab.push(file);
+      }
+    }
+    const parsedData: z.infer<typeof fileStoreSchema> = {
+      activeTab: parsedActiveTab,
+      files: parsedFiles.files,
+      openedTab: parsedOpenedTab.openedTab,
+    };
+
     useFileStore.setState(parsedData);
   }
   else {
@@ -168,11 +238,11 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
       fileName: null,
       id: uuid(),
       content: '',
-      saved: false,
+      saved: true,
       createdAt: new Date().getTime(),
       updatedAt: null,
     };
-    const defaultStoreValue: Omit<IFileStoreState, '_hasHydrated'> = {
+    const defaultStoreValue: z.infer<typeof fileStoreSchema> = {
       activeTab: defValue,
       files: [defValue],
       openedTab: [defValue],
@@ -191,4 +261,13 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 
 async function saveCache({ openedTab }: { openedTab: TFile[] }) {
   await tauriFileStore.set('openedTab', openedTab);
+}
+
+async function saveFileStorage({ files, openedTab, activeTab }: z.infer<typeof fileStoreSchema>) {
+  await Promise.all([
+    tauriFileStore.set('files', files),
+    tauriFileStore.set('openedTab', openedTab),
+    tauriFileStore.set('activeTab', activeTab),
+    tauriFileStore.save(),
+  ]);
 }

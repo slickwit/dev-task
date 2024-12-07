@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import NewFile from '@/components/dialogs/new-file';
+import NewUpdateFile from '@/components/dialogs/new-update-file';
 import { useBoolean } from '@/hooks/use-boolean';
 import { useEventListener } from '@/hooks/use-event-listener';
 import { useFileStore } from '@/store/file.store';
@@ -31,6 +31,7 @@ function FileProvider({ children }: { children?: React.ReactNode }) {
   const addFile = useFileStore(state => state.addFile);
   const closeTab = useFileStore(state => state.closeTab);
   const saveFile = useFileStore(state => state.saveFile);
+  const setTab = useFileStore(state => state.setTab);
 
   const newFileDialog = useBoolean(false);
 
@@ -38,6 +39,7 @@ function FileProvider({ children }: { children?: React.ReactNode }) {
     if (e.metaKey || e.ctrlKey) {
       switch (e.key) {
         case 'n':
+        case 't':
           e.preventDefault();
           addFile();
           break;
@@ -47,6 +49,18 @@ function FileProvider({ children }: { children?: React.ReactNode }) {
           break;
         case 's':
           saveFile(activeTab?.id);
+          break;
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+          e.preventDefault();
+          setTab(Number(e.key) - 1);
           break;
         default:
           break;
@@ -60,7 +74,7 @@ function FileProvider({ children }: { children?: React.ReactNode }) {
   return (
     <FileContext.Provider value={{ newFileOpen: newFileDialog.value, newFileClose: newFileDialog.onFalse, editorDetailOpen: showMenu.value, editorDetailToggle: showMenu.onToggle }}>
       {children}
-      <NewFile open={newFileDialog.value} onClose={newFileDialog.onFalse} />
+      <NewUpdateFile open={newFileDialog.value} onClose={newFileDialog.onFalse} />
     </FileContext.Provider>
   );
 }

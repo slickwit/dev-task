@@ -1,7 +1,5 @@
 import CharacterCount from '@tiptap/extension-character-count';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
-import Highlight from '@tiptap/extension-highlight';
-import Typography from '@tiptap/extension-typography';
 import { ReactNodeViewRenderer } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import bash from 'highlight.js/lib/languages/bash';
@@ -17,6 +15,7 @@ import shell from 'highlight.js/lib/languages/shell';
 import ts from 'highlight.js/lib/languages/typescript';
 import html from 'highlight.js/lib/languages/xml';
 import { createLowlight } from 'lowlight';
+import { Markdown } from 'tiptap-markdown';
 
 import CodeBlockComponent from './code-block-component';
 import { TrailingNode } from './trailing-node';
@@ -38,39 +37,47 @@ lowlight.register('postgres', pgsql);
 lowlight.register('rs', rs);
 lowlight.register('shell', shell);
 
-export const extensions = [StarterKit.configure({
-  heading: {
-    levels: [1, 2, 3],
-    HTMLAttributes: {
-      class: 'font-bold tracking-tight',
+export const extensions = [
+  CodeBlockLowlight.extend({
+    addNodeView() {
+      return ReactNodeViewRenderer(CodeBlockComponent);
     },
-  },
-  paragraph: {
-    HTMLAttributes: {
-      class: 'leading-7',
+  }).configure({
+    lowlight,
+    defaultLanguage: 'ts',
+  }),
+  StarterKit.configure({
+    heading: {
+      levels: [1, 2, 3],
+      HTMLAttributes: {
+        class: 'font-bold tracking-tight',
+      },
     },
-  },
-  blockquote: {
-    HTMLAttributes: {
-      class: 'my-6 pl-4 border-l-4 border-solid border-border',
+    paragraph: {
+      HTMLAttributes: {
+        class: 'leading-7',
+      },
     },
-  },
-  bulletList: {
-    HTMLAttributes: {
-      class: 'p-0.5 my-5 mx-4',
+    blockquote: {
+      HTMLAttributes: {
+        class: 'my-6 pl-4 border-l-4 border-solid border-border',
+      },
     },
-  },
-  orderedList: {
-    HTMLAttributes: {
-      class: 'p-0.5 my-5 mx-4',
+    bulletList: {
+      HTMLAttributes: {
+        class: 'p-0.5 my-5 mx-4',
+      },
     },
-  },
-  codeBlock: false,
-}), TrailingNode, Highlight, Typography, CharacterCount, CodeBlockLowlight.extend({
-  addNodeView() {
-    return ReactNodeViewRenderer(CodeBlockComponent);
-  },
-}).configure({
-  lowlight,
-  defaultLanguage: 'ts',
-})];
+    orderedList: {
+      HTMLAttributes: {
+        class: 'p-0.5 my-5 mx-4',
+      },
+    },
+    codeBlock: false,
+  }),
+  TrailingNode,
+  CharacterCount,
+  Markdown.configure({
+    transformPastedText: true,
+  }),
+];

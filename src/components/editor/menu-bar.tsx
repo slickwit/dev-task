@@ -22,8 +22,8 @@ export default function EditorMenuBar() {
           {openedTab.map((file) => {
             return (
               <div key={file.id} className="relative flex items-center">
-                <TabsTrigger value={file.id} className="border-r rounded-none w-[120px] font-normal justify-between hover:bg-foreground/5 relative before:content-[''] before:w-full before:h-[1.5px] before:absolute before:inset-0 before:bg-slate-400 before:hidden data-[state=active]:before:block pl-1.5 pr-0 h-7">
-                  <span className="w-20 truncate text-left">{file.fileName ?? 'New Tab'}</span>
+                <TabsTrigger value={file.id} className="border-r rounded-none font-normal justify-between hover:bg-foreground/5 relative before:content-[''] before:w-full before:h-[1.5px] before:absolute before:inset-0 before:bg-slate-400 before:hidden data-[state=active]:before:block pl-1.5 h-7 min-w-28">
+                  <span className="truncate text-left min-w-full pr-3.5">{file.fileName ?? 'New Tab'}</span>
                 </TabsTrigger>
                 <div className="size-5 absolute right-1 flex-shrink-0 flex items-center justify-center justify-self-end group/indicators">
                   {!file.saved && (

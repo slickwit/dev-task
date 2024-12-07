@@ -14,19 +14,30 @@ import { useFileStore } from '@/store/file.store';
 
 // ----------------------------------------------------------------------
 
-export default function NewFile({ open = false, onClose }: { open: boolean; onClose: () => void }) {
+export default function NewUpdateFile({ open = false, onClose, id, name }: { open: boolean; onClose: () => void; id?: string; name?: string | null }) {
   const addFile = useFileStore(state => state.addFile);
+  const updateFileName = useFileStore(state => state.updateFileName);
   const [error, setError] = useState(false);
-  const [fileName, setFileName] = useState('');
+  const [fileName, setFileName] = useState(() => name ?? '');
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (fileName.trim() !== '') {
-      const success = addFile(fileName.trim());
-      if (success) {
-        onClose();
-        setFileName('');
-        return;
+      if (!id) {
+        const success = addFile(fileName);
+        if (success) {
+          onClose();
+          setFileName('');
+          return;
+        }
+      }
+      else if (fileName || fileName === null) {
+        const success = await updateFileName(fileName, id);
+        if (success) {
+          onClose();
+          setFileName('');
+          return;
+        }
       }
       setError(true);
     }
@@ -36,7 +47,7 @@ export default function NewFile({ open = false, onClose }: { open: boolean; onCl
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>New File</DialogTitle>
+          <DialogTitle>{id ? 'Rename File' : 'New File'}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -56,7 +67,7 @@ export default function NewFile({ open = false, onClose }: { open: boolean; onCl
             {error && <p className="text-sm text-red-600 ml-1.5">File name already exists.</p>}
           </div>
           <DialogFooter>
-            <Button type="submit">Create</Button>
+            <Button type="submit">{id ? 'Update' : 'Create'}</Button>
           </DialogFooter>
         </form>
       </DialogContent>

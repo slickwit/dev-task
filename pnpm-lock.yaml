@@ -62,13 +62,7 @@ dependencies:
   '@tiptap/extension-heading':
     specifier: ^2.10.3
     version: 2.10.3(@tiptap/core@2.10.3)
-  '@tiptap/extension-highlight':
-    specifier: ^2.10.3
-    version: 2.10.3(@tiptap/core@2.10.3)
   '@tiptap/extension-paragraph':
-    specifier: ^2.10.3
-    version: 2.10.3(@tiptap/core@2.10.3)
-  '@tiptap/extension-typography':
     specifier: ^2.10.3
     version: 2.10.3(@tiptap/core@2.10.3)
   '@tiptap/pm':
@@ -110,6 +104,9 @@ dependencies:
   tailwindcss-animate:
     specifier: ^1.0.7
     version: 1.0.7(tailwindcss@3.4.15)
+  tiptap-markdown:
+    specifier: ^0.8.10
+    version: 0.8.10(@tiptap/core@2.10.3)
   uuid:
     specifier: ^11.0.3
     version: 11.0.3
@@ -2101,14 +2098,6 @@ packages:
       '@tiptap/core': 2.10.3(@tiptap/pm@2.10.3)
     dev: false
 
-  /@tiptap/extension-highlight@2.10.3(@tiptap/core@2.10.3):
-    resolution: {integrity: sha512-srMOdpUTcp1yPGmUqgKOkbmTpCYOF6Q/8CnquDkhrvK7Gyphj+n8TocrKiloaRYZKcoQWtmb+kcVPaHhHMzsWQ==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
-    dependencies:
-      '@tiptap/core': 2.10.3(@tiptap/pm@2.10.3)
-    dev: false
-
   /@tiptap/extension-history@2.10.3(@tiptap/core@2.10.3)(@tiptap/pm@2.10.3):
     resolution: {integrity: sha512-HaSiMdx9Im9Pb9qGlVud7W8bweRDRMez33Uzs5a2x0n1RWkelfH7TwYs41Y3wus8Ujs7kw6qh7jyhvPpQBKaSA==}
     peerDependencies:
@@ -2179,14 +2168,6 @@ packages:
 
   /@tiptap/extension-text@2.10.3(@tiptap/core@2.10.3):
     resolution: {integrity: sha512-7p9XiRprsRZm8y9jvF/sS929FCELJ5N9FQnbzikOiyGNUx5mdI+exVZlfvBr9xOD5s7fBLg6jj9Vs0fXPNRkPg==}
-    peerDependencies:
-      '@tiptap/core': ^2.7.0
-    dependencies:
-      '@tiptap/core': 2.10.3(@tiptap/pm@2.10.3)
-    dev: false
-
-  /@tiptap/extension-typography@2.10.3(@tiptap/core@2.10.3):
-    resolution: {integrity: sha512-lLUm6PSufACffAFQaK3bwoM3nFlQ/RdG21a3rKOoLWh+abYvIZ8UilYgebH9r2+DBET6UrG7I/0mBtm+L/Lheg==}
     peerDependencies:
       '@tiptap/core': ^2.7.0
     dependencies:
@@ -2310,8 +2291,19 @@ packages:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
     dev: true
 
+  /@types/linkify-it@3.0.5:
+    resolution: {integrity: sha512-yg6E+u0/+Zjva+buc3EIb+29XEg4wltq7cSmd4Uc2EE/1nUVmxyzpX6gUXD0V8jIrG0r7YeOGVIbYRkxeooCtw==}
+    dev: false
+
   /@types/linkify-it@5.0.0:
     resolution: {integrity: sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==}
+    dev: false
+
+  /@types/markdown-it@13.0.9:
+    resolution: {integrity: sha512-1XPwR0+MgXLWfTn9gCsZ55AHOKW1WN+P9vr0PaQh5aerR9LLQXUbjfEAFhjmEmyoYFWAyuN2Mqkn40MZ4ukjBw==}
+    dependencies:
+      '@types/linkify-it': 3.0.5
+      '@types/mdurl': 1.0.5
     dev: false
 
   /@types/markdown-it@14.1.2:
@@ -2326,6 +2318,10 @@ packages:
     dependencies:
       '@types/unist': 3.0.3
     dev: true
+
+  /@types/mdurl@1.0.5:
+    resolution: {integrity: sha512-6L6VymKTzYSrEf4Nev4Xa1LCHKrlTlYCBMTlQKFuddo1CvQcE52I0mwfOJayueUC7MJuXOeHTcIU683lzd0cUA==}
+    dev: false
 
   /@types/mdurl@2.0.0:
     resolution: {integrity: sha512-RGdgjQUZba5p6QEFAVx2OGb8rQDL/cPRG7GiedRzMcJ1tYnUANBncjbSB1NRGwbvjcPeikRABz2nshyPk1bhWg==}
@@ -3876,6 +3872,10 @@ packages:
       '@jridgewell/sourcemap-codec': 1.5.0
     dev: true
 
+  /markdown-it-task-lists@2.1.1:
+    resolution: {integrity: sha512-TxFAc76Jnhb2OUu+n3yz9RMu4CwGfaT788br6HhEDlvWfdeJcLUsxk1Hgw2yJio0OXsxv7pyIPmvECY7bMbluA==}
+    dev: false
+
   /markdown-it@14.1.0:
     resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
     hasBin: true
@@ -5187,6 +5187,18 @@ packages:
     resolution: {integrity: sha512-E1d3oP2emgJ9dRQZdf3Kkn0qJgI6ZLpyS5z6ZkY1DF3kaQaBsGZsndEpHwx+eC+tYM41HaSNvNtLx8tU57FzTQ==}
     dependencies:
       '@popperjs/core': 2.11.8
+    dev: false
+
+  /tiptap-markdown@0.8.10(@tiptap/core@2.10.3):
+    resolution: {integrity: sha512-iDVkR2BjAqkTDtFX0h94yVvE2AihCXlF0Q7RIXSJPRSR5I0PA1TMuAg6FHFpmqTn4tPxJ0by0CK7PUMlnFLGEQ==}
+    peerDependencies:
+      '@tiptap/core': ^2.0.3
+    dependencies:
+      '@tiptap/core': 2.10.3(@tiptap/pm@2.10.3)
+      '@types/markdown-it': 13.0.9
+      markdown-it: 14.1.0
+      markdown-it-task-lists: 2.1.1
+      prosemirror-markdown: 1.13.1
     dev: false
 
   /to-regex-range@5.0.1:
