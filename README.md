@@ -26,3 +26,5 @@ With **DevTask~**, you get:
 **DevTask~** is perfect for developers who need a simple, yet powerful, solution for capturing, organizing, and retrieving notes and code without the worry of losing them.
 
 Try **DevTask~** today and keep your coding notes safe and always within reach!
+
+### [Download For Windows](https://github.com/slickwit/dev-task/releases/download/v0.5.0)
