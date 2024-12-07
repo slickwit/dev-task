@@ -2,8 +2,8 @@
 
 ### Download Links Windows
 
-- [Windows Installer (.msi)](https://github.com/slickwit/dev-task/releases/download/v0.5.0/dev-task_0.1.0_x64_en-US.msi)
-- [Windows Installer (.nsis)](https://github.com/slickwit/dev-task/releases/download/v0.5.0/dev-task_0.1.0_x64-setup.exe)
+- [Windows Installer (.msi)](./dev-task_0.1.0_x64_en-US.msi)
+- [Windows Installer (.nsis)](./dev-task_0.1.0_x64-setup.exe)
 
 **For macOS Users:**
 
