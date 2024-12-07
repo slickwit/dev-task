@@ -27,4 +27,4 @@ With **DevTask~**, you get:
 
 Try **DevTask~** today and keep your coding notes safe and always within reach!
 
-### [Download For Windows](https://github.com/slickwit/dev-task/releases/download/v0.5.0)
+### [Download For Windows](./releases/download/v0.5.0)
