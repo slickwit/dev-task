@@ -27,4 +27,33 @@ With **DevTask~**, you get:
 
 Try **DevTask~** today and keep your coding notes safe and always within reach!
 
-### [Download For Windows](./releases/download/v0.5.0)
+## [Download For Windows](./releases/download/v0.1.0)
+
+### Run locally
+
+1. **Clone the Repository:**
+
+```bash
+# First, clone the repository to your local machine:
+git clone https://github.com/slickwit/dev-task.git
+cd dev-task
+```
+
+2. **Install Rust (if not already installed):**
+
+`rustup --version`
+
+If `rustup` is not installed, you can install it by running:
+
+```bash
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Or install on official rust website [rustup.rs](https://rustup.rs/)
+
+3. **Run the App in Development Mode:**
+
+```bash
+  pnpm install
+  pnpm tauri dev
+```
