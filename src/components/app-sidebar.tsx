@@ -51,7 +51,7 @@ export default function AppSidebar() {
 							<SidebarMenu className="gap-0">
 								<SidebarMenuItem className="p-2">
 									<SidebarMenuButton
-										className="text-center"
+										className="text-center hover:dark:bg-primary-foreground"
 										onClick={newFileDialog.onTrue}
 									>
 										<Plus />

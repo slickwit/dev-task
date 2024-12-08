@@ -1,5 +1,5 @@
 import { EditorProvider, useCurrentEditor } from "@tiptap/react";
-import { Bold, Code, CodeSquare, Italic, List, ListCheck, ListOrdered, Quote, Redo, SeparatorHorizontal, Strikethrough, Undo } from "lucide-react";
+import { Bold, Code, CodeSquare, Italic, List, ListOrdered, Quote, Redo, SeparatorHorizontal, Strikethrough, Undo } from "lucide-react";
 
 import "./tiptap.css";
 
@@ -52,7 +52,7 @@ function EditorList() {
 						<EditorProvider
 							extensions={extensions}
 							content={file.content}
-							editorContainerProps={{ className: cn("absolute left-0 top-2 px-4 h-[90%] w-full transition-[top]", editorDetailOpen && "top-8") }}
+							editorContainerProps={{ spellCheck: false, className: cn("absolute left-0 top-2 px-4 h-[90%] w-full transition-[top]", editorDetailOpen && "top-8") }}
 							editorProps={{ attributes: { class: "prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl focus:outline-none h-full [&_h1]:text-3xl [&_h2]:text-xl [&_h3]:text-lg [&_pre]:bg-zinc-900 dark:[&_pre]:bg-zinc-800" } }}
 							shouldRerenderOnTransaction={false}
 							slotBefore={<EditorHeader open={editorDetailOpen} />}
@@ -83,8 +83,8 @@ function EditorHeader({ open }: { open: boolean }) {
 	if (!editor)
 		return null;
 	return (
-		<div className={cn("flex items-center gap-x-2 flex-wrap transition-[height] h-0 w-full overflow-hidden", open && "h-7 border-b")}>
-			<div className="flex items-center gap-x-2 border-r pr-2">
+		<div className={cn("flex items-center flex-wrap transition-[height] h-0 w-full overflow-hidden", open && "h-7 border-b")}>
+			<div className="flex items-center border-r">
 				<Select
 					defaultValue="paragraph"
 					onValueChange={(value) => {
@@ -155,7 +155,7 @@ function EditorHeader({ open }: { open: boolean }) {
 					<Strikethrough />
 				</Button>
 			</div>
-			<div className="flex items-center gap-x-2 border-r pr-2">
+			<div className="flex items-center border-r">
 				<Button
 					onClick={() => editor.chain().focus().toggleBulletList().run()}
 					className={cn("size-7 flex-shrink-0 rounded-none", editor.isActive("bulletList") && "bg-primary border-0 hover:bg-primary/90 text-primary-foreground hover:text-primary-foreground")}
@@ -173,15 +173,6 @@ function EditorHeader({ open }: { open: boolean }) {
 					title="Ordered List"
 				>
 					<ListOrdered />
-				</Button>
-				<Button
-					onClick={() => editor.chain().focus().insertContent(`<ul data-type="taskList"><li data-type="taskItem" data-checked="true"></li></ul>`).run()}
-					className={cn("size-7 flex-shrink-0 rounded-none")}
-					variant="ghost"
-					size="icon"
-					title="Todo List"
-				>
-					<ListCheck />
 				</Button>
 				<Button
 					onClick={() => editor.chain().focus().toggleBlockquote().run()}
@@ -227,7 +218,7 @@ function EditorHeader({ open }: { open: boolean }) {
 			>
 				<CodeSquare />
 			</Button>
-			<div className="flex items-center border-l gap-x-2 pr-2">
+			<div className="flex items-center border-l gap-x-2">
 				<Button
 					onClick={() => editor.chain().focus().undo().run()}
 					disabled={

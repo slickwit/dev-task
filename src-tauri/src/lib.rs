@@ -1,3 +1,5 @@
+use handler::todo_create_window;
+
 pub mod handler;
 
 // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
@@ -11,7 +13,7 @@ pub fn run() {
     tauri::Builder::default()
         .plugin(tauri_plugin_store::Builder::new().build())
         .plugin(tauri_plugin_shell::init())
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![greet, todo_create_window])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

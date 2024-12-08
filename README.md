@@ -22,10 +22,11 @@ With **DevTask~**, you get:
 - [ ] **Markdown Parser:** Add markdown parsing when pasting text with markdown formatting.
 - [ ] **Menu:** Finish the app's main menu.
 - [ ] **Context Menu & Shortcuts:** Complete the context menu and implement all shortcut keys.
+- [ ] **Splashscreen:** Add spashscreen.
 
 ### Future Features:
 
-- [ ] **Separate Todo List:** Move the todo list from the editor and add it to a separate, smaller window.
+- [x] **Separate Todo List:** Move the todo list from the editor and add it to a separate, smaller window.
 - [ ] **Export/Import:** Add functionality to export and import files.
 - [ ] **Multiple Themes:** Implement support for multiple themes.
 

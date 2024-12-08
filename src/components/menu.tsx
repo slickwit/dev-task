@@ -1,4 +1,5 @@
-import { Code, Globe, Mic } from "lucide-react";
+import { invoke } from "@tauri-apps/api/core";
+import { Code, ExternalLink, Globe, Mic } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
 import {
@@ -37,6 +38,10 @@ export default function Menu() {
 	const closeWindow = useCallback(async () => {
 		appWindow.close();
 	}, []);
+
+	const handleOpenTodo = async () => {
+		await invoke("todo_create_window");
+	};
 
 	return (
 		<>
@@ -224,9 +229,9 @@ export default function Menu() {
 						</MenubarContent>
 					</MenubarMenu>
 
-					<Button onClick={() => {}}>Open Todo</Button>
-
 					<ThemeToggle />
+
+					<Button variant="ghost" onClick={handleOpenTodo} className="rounded-none text-sm px-3 py-1 border-b dark:bg-primary-foreground bg-primary/15 hover:bg-secondary">Todo List <ExternalLink /></Button>
 				</Menubar>
 				<WindowsControls isMaximized={isMaximized} setIsMaximized={setIsMaximized} />
 			</header>
