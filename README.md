@@ -1,3 +1,9 @@
+<div align="center">
+
+# 🚧 Under Development
+
+</div>
+
 # DevTask~
 
 **DevTask~** is a desktop application built with the Tauri framework, leveraging React, Shadcn, and Rust. It was created to help developers keep track of their notes and code snippets efficiently.

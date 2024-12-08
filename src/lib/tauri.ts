@@ -2,6 +2,6 @@
 
 // ----------------------------------------------------------------------
 
-import { getCurrentWindow } from '@tauri-apps/api/window';
+import { getCurrentWindow } from "@tauri-apps/api/window";
 
 export const appWindow = getCurrentWindow();

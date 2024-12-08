@@ -55,14 +55,15 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 	...defaultState,
 	setTabById: async (id: string) => {
 		const { openedTab, files } = get();
-		const inOpenTab = openedTab.find((f) => f.id === id);
+		const inOpenTab = openedTab.find(f => f.id === id);
 		if (inOpenTab) {
 			set({
 				activeTab: inOpenTab,
 			});
 			await tauriFileStore.set("activeTab", inOpenTab);
-		} else {
-			const file = files.find((f) => f.id === id);
+		}
+		else {
+			const file = files.find(f => f.id === id);
 			if (file) {
 				set({
 					activeTab: file,
@@ -84,12 +85,12 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 	closeTab: async (id?: string) => {
 		const { openedTab, activeTab, files } = get();
 		const selectedTabId = id ?? activeTab?.id;
-		const closedIndex = openedTab.findIndex((file) => file.id === selectedTabId);
+		const closedIndex = openedTab.findIndex(file => file.id === selectedTabId);
 		const selectedTab = openedTab[closedIndex];
-		const filteredTab = openedTab.filter((f) => f.id !== selectedTabId);
+		const filteredTab = openedTab.filter(f => f.id !== selectedTabId);
 
 		if (!selectedTab.fileName && selectedTab.content === "" && selectedTab.saved) {
-			const updatedFiles = files.filter((f) => f.id !== selectedTab.id);
+			const updatedFiles = files.filter(f => f.id !== selectedTab.id);
 			set({ files: updatedFiles });
 			await tauriFileStore.set("files", updatedFiles);
 		}
@@ -117,7 +118,7 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 			}
 			return file;
 		});
-		const updatedFiles = files.map((f) => (f.id === id ? { ...f, content, saved: false } : f));
+		const updatedFiles = files.map(f => (f.id === id ? { ...f, content, saved: false } : f));
 		set({
 			openedTab: updatedOpenedTab,
 			files: updatedFiles,
@@ -127,8 +128,9 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 	},
 	addFile: (fileName) => {
 		if (fileName) {
-			const exist = get().files.some((f) => f.fileName === fileName);
-			if (exist) return false;
+			const exist = get().files.some(f => f.fileName === fileName);
+			if (exist)
+				return false;
 		}
 		const newFileName = fileName ?? null;
 		const newFile: TFile = {
@@ -139,7 +141,7 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 			createdAt: new Date().getTime(),
 			updatedAt: null,
 		};
-		set((state) => ({
+		set(state => ({
 			activeTab: newFile,
 			files: [...state.files, newFile],
 			openedTab: [...state.openedTab, newFile],
@@ -149,10 +151,11 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 	updateFileName: async (fileName, id) => {
 		if (fileName && id) {
 			const { files, activeTab, openedTab } = get();
-			const exist = files.some((f) => f.fileName === fileName);
-			if (exist) return false;
-			const updatedFiles = files.map((f) => (f.id === id ? { ...f, fileName, updatedAt: new Date().getTime() } : f));
-			const updatedOpenedTab = openedTab.map((f) => (f.id === id ? { ...f, fileName, updatedAt: new Date().getTime() } : f));
+			const exist = files.some(f => f.fileName === fileName);
+			if (exist)
+				return false;
+			const updatedFiles = files.map(f => (f.id === id ? { ...f, fileName, updatedAt: new Date().getTime() } : f));
+			const updatedOpenedTab = openedTab.map(f => (f.id === id ? { ...f, fileName, updatedAt: new Date().getTime() } : f));
 			const updatedActiveTab = activeTab?.id === id ? { ...activeTab, fileName, updatedAt: new Date().getTime() } : activeTab;
 			set({
 				files: updatedFiles,
@@ -167,7 +170,7 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 	saveFile: async (id?: string) => {
 		if (id) {
 			const { files, openedTab, activeTab } = get();
-			const newFiles = files.filter((f) => f.id !== id);
+			const newFiles = files.filter(f => f.id !== id);
 			const newOpenedTab = openedTab.map((f) => {
 				if (f.id === id) {
 					const u = {
@@ -192,8 +195,8 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 		const { files, openedTab, activeTab } = get();
 		const selId = id ?? activeTab?.id;
 		const updatedState: z.infer<typeof fileStoreSchema> = {
-			files: files.filter((f) => f.id !== selId),
-			openedTab: openedTab.filter((f) => f.id !== selId),
+			files: files.filter(f => f.id !== selId),
+			openedTab: openedTab.filter(f => f.id !== selId),
 			activeTab: id === activeTab?.id ? null : activeTab,
 		};
 		set(updatedState);
@@ -217,9 +220,9 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 		});
 		const parsedActiveTab = unParsedActiveTab === null ? null : fileSchema.parse(unParsedActiveTab);
 		const parsedOpenedTab = fileStoreSchema.pick({ openedTab: true }).parse({ openedTab: unParsedOpenedTab ?? [] });
-		const inOpenedTab = parsedOpenedTab.openedTab.some((f) => f.id === parsedActiveTab?.id);
+		const inOpenedTab = parsedOpenedTab.openedTab.some(f => f.id === parsedActiveTab?.id);
 		if (!inOpenedTab) {
-			const file = parsedFiles.files.find((f) => f.id === parsedActiveTab?.id);
+			const file = parsedFiles.files.find(f => f.id === parsedActiveTab?.id);
 			if (file) {
 				parsedOpenedTab.openedTab.push(file);
 			}
@@ -231,7 +234,8 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 		};
 
 		useFileStore.setState(parsedData);
-	} else {
+	}
+	else {
 		const defValue: TFile = {
 			fileName: null,
 			id: uuid(),
