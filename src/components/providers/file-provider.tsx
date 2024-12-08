@@ -31,39 +31,51 @@ function FileProvider({ children }: { children?: React.ReactNode }) {
 	const addFile = useFileStore(state => state.addFile);
 	const closeTab = useFileStore(state => state.closeTab);
 	const saveFile = useFileStore(state => state.saveFile);
+	const saveAll = useFileStore(state => state.saveAll);
 	const setTab = useFileStore(state => state.setTab);
 
 	const newFileDialog = useBoolean(false);
 
 	useEventListener("keydown", (e: KeyboardEvent) => {
 		if (e.metaKey || e.ctrlKey) {
-			switch (e.key) {
-				case "n":
-				case "t":
-					e.preventDefault();
-					addFile();
-					break;
-				case "w":
-					e.preventDefault();
-					closeTab();
-					break;
-				case "s":
-					saveFile(activeTab?.id);
-					break;
-				case "1":
-				case "2":
-				case "3":
-				case "4":
-				case "5":
-				case "6":
-				case "7":
-				case "8":
-				case "9":
-					e.preventDefault();
-					setTab(Number(e.key) - 1);
-					break;
-				default:
-					break;
+			if (!e.shiftKey) {
+				switch (e.key.toLowerCase()) {
+					case "n":
+					case "t":
+						e.preventDefault();
+						addFile();
+						break;
+					case "w":
+						e.preventDefault();
+						closeTab();
+						break;
+					case "s":
+						saveFile(activeTab?.id);
+						break;
+					case "1":
+					case "2":
+					case "3":
+					case "4":
+					case "5":
+					case "6":
+					case "7":
+					case "8":
+					case "9":
+						e.preventDefault();
+						setTab(Number(e.key) - 1);
+						break;
+					default:
+						break;
+				}
+			}
+			else {
+				switch (e.key.toUpperCase()) {
+					case "S":
+						saveAll();
+						break;
+					default:
+						break;
+				}
 			}
 		}
 	});

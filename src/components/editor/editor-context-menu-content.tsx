@@ -28,7 +28,6 @@ export default function EditorContextMenuContent() {
 			<ContextMenuSeparator />
 			<ContextMenuItem inset onClick={() => editor.chain().focus().toggleCodeBlock().run()}>
 				Code Block
-				<ContextMenuShortcut>⌘ Alt C</ContextMenuShortcut>
 			</ContextMenuItem>
 			<ContextMenuSeparator />
 			<ContextMenuItem

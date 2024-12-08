@@ -41,6 +41,7 @@ interface IFileStoreActions {
 	addFile: (fileName?: string) => boolean;
 	updateFileName: (fileName: string, id: string) => Promise<boolean>;
 	saveFile: (id?: string) => void;
+	saveAll: () => void;
 	deleteFile: (id?: string) => void;
 }
 
@@ -190,6 +191,16 @@ export const useFileStore = create<IFileStoreState & IFileStoreActions>()((set, 
 			set(newState);
 			await saveFileStorage(newState);
 		}
+	},
+	saveAll: async () => {
+		const { files, openedTab, activeTab } = get();
+		const updatedState = {
+			files: files.map(f => ({ ...f, saved: true })),
+			openedTab: openedTab.map(f => ({ ...f, saved: true })),
+			activeTab: activeTab ? { ...activeTab, saved: true } : null,
+		};
+		set(updatedState);
+		await saveFileStorage(updatedState);
 	},
 	deleteFile: async (id?: string) => {
 		const { files, openedTab, activeTab } = get();

@@ -13,7 +13,7 @@ If you're tired of losing your important notes or code examples, **DevTask~** of
 With **DevTask~**, you get:
 
 - Seamless note-taking for your code snippets, ideas, and todos.
-- Auto-saving feature, so you don't have to worry about losing content.
+- Auto-caching feature, so you don't have to worry about losing content.
 - A clean interface with powerful features to format and store your code.
 - Built using modern technologies like Tauri, React, Shadcn, and Rust for a smooth and responsive experience.
 
