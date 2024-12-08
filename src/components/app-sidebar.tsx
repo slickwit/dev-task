@@ -1,3 +1,4 @@
+import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
 import { File, Plus } from "lucide-react";
 import { useState } from "react";
 
@@ -27,6 +28,18 @@ export default function AppSidebar() {
 	});
 	const updateFileDialog = useBoolean();
 	const newFileDialog = useBoolean();
+
+	const handleOpenExternalLink = async () => {
+		const webview = new WebviewWindow("my-label", {
+			title: "Buy Me A Coffee - Kenneth Ryan Dy",
+			url: "https://www.buymeacoffee.com/dykennethrx",
+			width: 600,
+			height: 800,
+		});
+		webview.once("tauri://error", (e) => {
+			console.error(e);
+		});
+	};
 
 	return (
 		<>
@@ -95,9 +108,9 @@ export default function AppSidebar() {
 					</ContextMenuContent>
 				</ContextMenu>
 				<SidebarFooter className="items-center">
-					<a href="https://www.buymeacoffee.com/dykennethrx" target="_blank" rel="noopener noreferrer" className="w-36">
+					<button onClick={handleOpenExternalLink} className="w-36">
 						<img src={BuyMeCoffeImage} width={200} height={200} />
-					</a>
+					</button>
 				</SidebarFooter>
 			</Sidebar>
 			<NewUpdateFile open={newFileDialog.value} onClose={newFileDialog.onFalse} />
