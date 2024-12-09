@@ -28,7 +28,7 @@ With **DevTask~**, you get:
 
 - [x] **Separate Todo List:** Move the todo list from the editor and add it to a separate, smaller window.
 - [ ] **Export/Import:** Add functionality to export and import files.
-- [ ] **Multiple Themes:** Implement support for multiple themes.
+- [x] **Multiple Themes:** Implement support for multiple themes.
 
 **DevTask~** is perfect for developers who need a simple, yet powerful, solution for capturing, organizing, and retrieving notes and code without the worry of losing them.
 
