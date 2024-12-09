@@ -21,6 +21,15 @@
         "resizable": true,
         "minimizable": true,
         "maximizable": true
+      },
+      {
+        "label": "todo",
+        "title": "Todo - DevTask~",
+        "height": 240,
+        "width": 300,
+        "alwaysOnTop": true,
+        "url": "todo/index.html",
+        "create": false
       }
     ],
     "security": {

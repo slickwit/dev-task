@@ -22,7 +22,7 @@ With **DevTask~**, you get:
 - [ ] **Markdown Parser:** Add markdown parsing when pasting text with markdown formatting.
 - [ ] **Menu:** Finish the app's main menu.
 - [ ] **Context Menu & Shortcuts:** Complete the context menu and implement all shortcut keys.
-- [ ] **Splashscreen:** Add spashscreen.
+- [ ] **Splashscreen:** Add app spashscreen.
 
 ### Future Features:
 

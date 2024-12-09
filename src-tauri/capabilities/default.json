@@ -14,6 +14,7 @@
     "core:window:allow-toggle-maximize",
     "core:window:allow-internal-toggle-maximize",
     "core:window:default",
+    "core:webview:allow-create-webview",
     "core:webview:allow-create-webview-window",
     "store:default"
   ]
