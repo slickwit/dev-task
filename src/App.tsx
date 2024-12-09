@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/filename-case */
 import Editor from "@/components/editor/editor";
 import { FileProvider } from "@/components/providers/file-provider";
 
