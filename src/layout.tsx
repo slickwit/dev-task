@@ -2,6 +2,8 @@ import AppSidebar from "@/components/app-sidebar";
 import Menu from "@/components/menu";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
+import LayoutProvider from "./components/providers/layout-provider";
+
 // ----------------------------------------------------------------------
 
 interface LayoutProps {
@@ -10,16 +12,18 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
 	return (
-		<SidebarProvider>
-			<div className="min-h-svh w-full">
-				<Menu />
-				<div className="flex w-full">
-					<AppSidebar />
-					<main className="w-full">
-						{children}
-					</main>
+		<LayoutProvider>
+			<SidebarProvider>
+				<div className="min-h-svh w-full">
+					<Menu />
+					<div className="flex w-full">
+						<AppSidebar />
+						<main className="w-full">
+							{children}
+						</main>
+					</div>
 				</div>
-			</div>
-		</SidebarProvider>
+			</SidebarProvider>
+		</LayoutProvider>
 	);
 }

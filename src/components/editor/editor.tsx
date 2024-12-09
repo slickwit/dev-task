@@ -262,7 +262,7 @@ function EditorFooter() {
 		return null;
 
 	return (
-		<div className="fixed bottom-0 left-0 text-right bg-slate-900 space-x-2 mr-2 pb-0.5 text-xs text-muted-foreground tracking-wide w-svw pr-2">
+		<div className="fixed bottom-0 left-0 text-right bg-accent/20 space-x-2 mr-2 pb-0.5 text-xs text-muted-foreground tracking-wide w-svw pr-2">
 			<span>
 				Char:
 				{editor.storage.characterCount.characters()}

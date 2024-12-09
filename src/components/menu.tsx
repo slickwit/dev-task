@@ -14,7 +14,7 @@ import {
 import { appWindow } from "@/lib/tauri";
 import { useFileStore } from "@/store/file.store";
 
-import ThemeToggle from "./theme-toggle";
+import ThemeToggle from "./menu-theme";
 import { Button } from "./ui/button";
 import WindowsControls from "./windows-controls";
 
@@ -57,11 +57,11 @@ export default function Menu() {
 			>
 				<Menubar className="rounded-none border-0 p-0 shadow-none bg-transparent [&>button]:h-9 gap-0">
 					<MenubarMenu>
-						<MenubarTrigger className="font-bold text-cyan-500 rounded-none h-9">
+						<MenubarTrigger className="font-bold text-primary rounded-none h-9">
 							<Code className="mr-1 h-3.5 w-4" />
 							<h4 className="text-xs font-bold">DevTask~</h4>
 						</MenubarTrigger>
-						<MenubarContent>
+						<MenubarContent sideOffset={0} className="rounded-sm">
 							<MenubarItem className="text-xs" disabled>About App</MenubarItem>
 							<MenubarSeparator />
 							<MenubarItem className="text-xs" onClick={closeWindow}>
@@ -71,7 +71,7 @@ export default function Menu() {
 					</MenubarMenu>
 					<MenubarMenu>
 						<MenubarTrigger className="relative rounded-none">File</MenubarTrigger>
-						<MenubarContent>
+						<MenubarContent sideOffset={0} className="rounded-sm">
 							<MenubarItem className="text-xs" onClick={() => addFile()}>
 								New Tab <MenubarShortcut>⌘T</MenubarShortcut>
 							</MenubarItem>
@@ -101,7 +101,7 @@ export default function Menu() {
 					</MenubarMenu>
 					<MenubarMenu>
 						<MenubarTrigger className="rounded-none">Edit</MenubarTrigger>
-						<MenubarContent>
+						<MenubarContent sideOffset={0} className="rounded-sm">
 							<MenubarItem className="text-xs" disabled>
 								Undo <MenubarShortcut>⌘Z</MenubarShortcut>
 							</MenubarItem>
@@ -144,7 +144,7 @@ export default function Menu() {
 					<ThemeToggle />
 				</Menubar>
 				<div className="flex items-center gap-x-6">
-					<Button variant="ghost" onClick={handleOpenTodo} className="rounded-none text-sm px-3 py-1 border-b dark:bg-primary-foreground bg-primary/15 hover:bg-secondary">Todo List <ExternalLink /></Button>
+					<Button variant="ghost" onClick={handleOpenTodo} className="rounded-none text-sm px-3 py-1 border-b bg-primary/15 hover:bg-secondary">Todo List <ExternalLink /></Button>
 					<WindowsControls isMaximized={isMaximized} setIsMaximized={setIsMaximized} />
 				</div>
 			</header>

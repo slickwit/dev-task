@@ -51,7 +51,7 @@ export default function AppSidebar() {
 							<SidebarMenu className="gap-0">
 								<SidebarMenuItem className="p-2">
 									<SidebarMenuButton
-										className="text-center hover:dark:bg-primary-foreground"
+										className="text-center hover:bg-primary hover:text-primary-foreground"
 										onClick={newFileDialog.onTrue}
 									>
 										<Plus />
@@ -67,7 +67,7 @@ export default function AppSidebar() {
 													onClick={() => {
 														setTabById(f.id);
 													}}
-													className="rounded-none text-sm [&>svg]:size-3.5"
+													className="rounded-none text-sm [&>svg]:size-3.5 hover:bg-primary hover:text-primary-foreground"
 												>
 													<File />
 													{f.fileName ?? "New Tab"}
