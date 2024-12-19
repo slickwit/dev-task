@@ -67,7 +67,7 @@ export default function AppSidebar() {
 													onClick={() => {
 														setTabById(f.id);
 													}}
-													className="rounded-none text-sm [&>svg]:size-3.5 hover:bg-primary hover:text-primary-foreground"
+													className="rounded-none text-sm [&>svg]:size-3.5 hover:bg-primary hover:text-primary-foreground truncate"
 												>
 													<File />
 													{f.fileName ?? "New Tab"}

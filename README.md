@@ -6,6 +6,12 @@
 
 # DevTask~
 
+<div align="center">
+
+![Example image](example.png)
+
+</div>
+
 **DevTask~** is a desktop application built with the Tauri framework, leveraging React, Shadcn, and Rust. It was created to help developers keep track of their notes and code snippets efficiently.
 
 If you're tired of losing your important notes or code examples, **DevTask~** offers a simple, persistent solution. Unlike traditional note-taking apps, DevTask~ saves your content automatically and keeps it cached, so when you open the app again, your previous work is still there, ready for you to continue.
