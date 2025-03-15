@@ -40,7 +40,20 @@ With **DevTask~**, you get:
 
 Try **DevTask~** today and keep your coding notes safe and always within reach!
 
-## [Download For Windows](./releases/download/v0.5.0)
+## Download
+
+### Windows
+
+- [Windows Installer (.msi)](./releases/download/v0.5.0/dev-task_0.5.0_x64_en-US.msi)
+- [Windows Installer (.nsis)](./releases/download/v0.5.0/dev-task_0.5.0_x64-setup.exe)
+
+### macOS
+
+- [macOS Installer (.dmg)](./releases/download/v0.5.0/dev-task_0.5.0_x64.dmg) *(Coming soon!)*
+
+**For macOS Users:**
+
+If the macOS installer is not yet available, you can build and run the app manually by following these steps:
 
 ### Run locally
 
@@ -59,14 +72,14 @@ cd dev-task
 If `rustup` is not installed, you can install it by running:
 
 ```bash
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-Or install on official rust website [rustup.rs](https://rustup.rs/)
+Or install on the official Rust website: [rustup.rs](https://rustup.rs/)
 
 3. **Run the App in Development Mode:**
 
 ```bash
-  pnpm install
-  pnpm tauri dev
+pnpm install
+pnpm tauri dev
 ```
