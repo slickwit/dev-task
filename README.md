@@ -44,12 +44,12 @@ Try **DevTask~** today and keep your coding notes safe and always within reach!
 
 ### Windows
 
-- [Windows Installer (.msi)](./releases/download/v0.5.0/dev-task_0.5.0_x64_en-US.msi)
-- [Windows Installer (.nsis)](./releases/download/v0.5.0/dev-task_0.5.0_x64-setup.exe)
+- [Windows Installer (.msi)](./releases/download/windows/v0.5.0/dev-task_0.5.0_x64_en-US.msi)
+- [Windows Installer (.nsis)](./releases/download/windows/v0.5.0/dev-task_0.5.0_x64-setup.exe)
 
 ### macOS
 
-- [macOS Installer (.dmg)](./releases/download/v0.5.0/dev-task_0.5.0_x64.dmg) *(Coming soon!)*
+- [macOS Installer (.dmg)](./releases/download/macos/dev-task_0.5.0_x64.dmg)
 
 **For macOS Users:**
 
