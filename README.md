@@ -49,7 +49,7 @@ Try **DevTask~** today and keep your coding notes safe and always within reach!
 
 ### macOS
 
-- [macOS Installer (.dmg)](./releases/download/macos/dev-task_0.5.0_x64.dmg)
+- [macOS Installer (.dmg)](./releases/download/macos/dev-task_0.5.0_aarch64.dmg)
 
 **For macOS Users:**
 
