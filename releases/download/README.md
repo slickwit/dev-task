@@ -4,8 +4,8 @@
 
 #### Windows
 
-- [Windows Installer (.msi)](./windows/dev-task_0.5.0_x64_en-US.msi)
-- [Windows Installer (.nsis)](./windows/dev-task_0.5.0_x64-setup.exe)
+- [Windows Installer (.msi)](./windows/v0.5.0/dev-task_0.5.0_x64_en-US.msi)
+- [Windows Installer (.nsis)](./windows/v0.5.0/dev-task_0.5.0_x64-setup.exe)
 
 #### macOS
 
